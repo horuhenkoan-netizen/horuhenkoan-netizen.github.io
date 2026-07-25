@@ -1,9 +1,9 @@
-<!DOCTYPE html>https://github.com/horuhenkoan-netizen/horuhenkoan-netizen.github.io/blob/main/index.html
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Anastasia Strelets</title>
+<title>Jack — 3D Creator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -513,6 +513,84 @@
 
   .case-no-scroll { overflow: hidden !important; }
 
+  /* ---------- RAW media section (dayanadsgn-style) ---------- */
+  .case-raw {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 6vw, 4.5rem);
+    margin-top: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 1.5rem;
+  }
+  .raw-lead {
+    color: #D7E2EA;
+    opacity: 0.4;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .raw-item { margin: 0; width: 100%; }
+  .raw-media {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 1px solid rgba(215,226,234,0.1);
+    background: #0d0d0d;
+  }
+  .raw-media img, .raw-media video { display: block; width: 100%; height: auto; }
+  .raw-duo { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.6rem, 1.6vw, 1.1rem); }
+  .raw-duo .raw-item { width: 100%; }
+  .raw-cap {
+    margin-top: 0.8rem;
+    color: #D7E2EA;
+    opacity: 0.4;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .raw-reveal {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.9s cubic-bezier(.22,1,.36,1), transform 0.9s cubic-bezier(.22,1,.36,1);
+  }
+  .raw-pending { opacity: 0; transform: translateY(38px); }
+  /* RAW footer nav (prev / next project) */
+  .raw-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: clamp(1.5rem, 4vw, 3rem);
+    padding-top: clamp(1.5rem, 4vw, 2.5rem);
+    border-top: 1px solid rgba(215,226,234,0.12);
+  }
+  .raw-nav a {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.25s ease;
+  }
+  .raw-nav a:hover { opacity: 0.6; }
+  .raw-nav .raw-nav-eyebrow {
+    color: #D7E2EA;
+    opacity: 0.4;
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .raw-nav .raw-nav-name {
+    color: #D7E2EA;
+    font-size: clamp(1.1rem, 2.6vw, 1.7rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .raw-nav .raw-nav-next { text-align: right; }
+  @media (max-width: 680px) { .raw-duo { grid-template-columns: 1fr; } }
+
   /* ---------- CONTACT MODAL ---------- */
   .contact-panel { max-width: 620px; }
   .contact-list {
@@ -750,6 +828,8 @@
           <h3 class="case-h3">Outcome</h3>
           <div id="case-outcome"></div>
         </div>
+
+        <div class="case-raw" id="case-raw" style="display:none;"></div>
       </div>
     </div>
   </div>
@@ -1024,19 +1104,31 @@
   /* ================= Projects ================= */
   var projects = [
     {
-      num: '01', cat: 'Новый сайт для digital-агентства', name: 'Медиаконтекст', caseId: 'mediacontext',
+      num: '01', cat: 'Брендинг · система онлайн-прокторинга', name: 'Экзамус', caseId: 'examus',
+      img1: 'case-examus-logo.png',
+      img2: 'case-examus-6.png',
+      img3: 'case-examus-7.png'
+    },
+    {
+      num: '02', cat: 'Брендинг · digital / SMM-агентство', name: 'I AM Agency', caseId: 'iam',
+      img1: 'cover-iam.png',
+      img2: 'case-iam-4.png',
+      img3: 'case-iam-3.png'
+    },
+    {
+      num: '03', cat: 'Новый сайт для digital-агентства', name: 'Медиаконтекст', caseId: 'mediacontext',
       img1: 'proj01-a.png?v=3',
       img2: 'proj01-b.png?v=3',
       img3: 'proj01-c.png'
     },
     {
-      num: '02', cat: 'Редизайн сайта', name: 'ИОН — (e-commerce + сервис)', caseId: 'ion',
+      num: '04', cat: 'Редизайн сайта', name: 'ИОН — (e-commerce + сервис)', caseId: 'ion',
       img1: 'cover-ion-1.png',
       img2: 'cover-ion-2.png',
       img3: 'cover-ion-3.png'
     },
     {
-      num: '03', cat: 'Приложение онлайн-кинотеатра', name: 'Kasseta', caseId: 'kasseta',
+      num: '05', cat: 'Приложение онлайн-кинотеатра', name: 'Kasseta', caseId: 'kasseta',
       img1: 'cover-kasseta-1.png',
       img2: 'cover-kasseta-3.png',
       img3: 'cover-kasseta-2.png'
@@ -1167,6 +1259,72 @@
         ['case-ion-5.png', 'Брендинг и постеры ИОН'],
         ['case-ion-6.png', 'Постер и типографика ИОН']
       ]
+    },
+    examus: {
+      title: 'Экзамус',
+      role: 'Роль: Арт-директор / Тимлид',
+      timeline: '2025',
+      deliverables: 'Брендинг · Айдентика · Презентации · Сайт · Соцсети',
+      about: [
+        'Экзамус — система онлайн-прокторинга: 200+ клиентов, 150+ вузов и\u00A0корпоративных университетов, 700\u00A0000 тестируемых из\u00A0120 стран. Нужен был единый бренд, который считывается как технологичный и\u00A0при этом честный, и\u00A0работает на\u00A0всех носителях без потери целостности.',
+        'Мы собрали позиционирование «Экзамус — гарант честности» и\u00A0построили вокруг него всю систему: от\u00A0смыслов и\u00A0ассоциаций до\u00A0айдентики. Технологии и\u00A0честность стали двумя опорами бренда и\u00A0задали визуальный язык — фирменный оранжевый, акцентный шрифт Racama, чистая графика.'
+      ],
+      outcome: [
+        'Бренд получил цельную систему, которая живёт на\u00A0всех носителях: брендбук, презентации, сайт с\u00A0UI-kit и\u00A0ежедневный контент для\u00A0соцсетей. Единый визуальный язык держится от\u00A0логотипа до\u00A0поста в\u00A0ленте, что делает бренд узнаваемым в\u00A0потоке и\u00A0упрощает работу команды.',
+        'Как арт-директор я вела проект от\u00A0концепции и\u00A0позиционирования до\u00A0реализации системы, разработала брендбук и\u00A0правила, координировала перенос бренда на\u00A0все площадки.'
+      ],
+      images: [
+        ['case-examus-logo.png', 'Логотип Экзамус на фирменном градиенте'],
+        ['case-examus-2.png', 'Сайт: партнёрская программа Экзамус'],
+        ['case-examus-3.png', 'Сайт: продукт и решение прокторинга'],
+        ['case-examus-4.png', 'Контент для соцсетей: светлая и тёмная тема']
+      ],
+      mediaLead: 'RAW · система бренда',
+      nav: {
+        prev: { id: 'kasseta', name: 'Kasseta' },
+        next: { id: 'iam', name: 'I AM Agency' }
+      },
+      media: [
+        { type: 'image', src: 'case-examus-5.png', cap: 'Палитра градиентов и мобильный сплэш', full: true },
+        { type: 'duo', items: [
+          { type: 'image', src: 'case-examus-6.png', cap: 'Основные цвета: Graphite Black · Orange · White' },
+          { type: 'image', src: 'case-examus-7.png', cap: 'Шрифтовая пара: Racama · Inter' }
+        ] },
+        { type: 'image', src: 'case-examus-8.png', cap: 'Обложка позиционирования', full: true },
+        { type: 'image', src: 'cover-examus.png', cap: 'Финальный логотип на фирменном градиенте', full: true }
+      ]
+    },
+    iam: {
+      title: 'I AM Agency',
+      role: 'Роль: Арт-директор / Тимлид',
+      timeline: '2024-2025',
+      deliverables: 'Брендинг · Айдентика · Соцсети',
+      about: [
+        'IAM Agency — собственный бренд digital / SMM-агентства. Задача была построить айдентику, которая делает контент агентства узнаваемым в\u00A0ленте и\u00A0задаёт единый уровень качества для\u00A0потока публикаций.',
+        'Я собрала бренд-систему вокруг чистого гротеска (Coolvetica + Inter) и\u00A0фирменных градиентов, и\u00A0главное — прописала правила контента: система обложек с\u00A0категориями и\u00A0нишами, логика построения ленты (обложки одной группы не\u00A0стоят рядом, один градиент на\u00A09–12 постов), правила типографики с\u00A0блоком «ошибки».'
+      ],
+      outcome: [
+        'Бренд получил рабочую контент-систему, а\u00A0не просто набор шаблонов: любой дизайнер команды может собирать посты, сторис и\u00A0обложки, сохраняя единый ритм ленты и\u00A0узнаваемость. Айдентика раскрыта на\u00A0презентациях, сайте и\u00A0в\u00A0ежедневном контенте.',
+        'Как арт-директор я задала визуальный язык бренда, прописала правила системы и\u00A0вела её применение в\u00A0команде и\u00A0на\u00A0всех носителях.'
+      ],
+      images: [
+        ['case-iam-2.png', 'Обложки для Reels: категории и ниши бренда'],
+        ['case-iam-3.png', 'Обложки постов: варианты с фото и обтравкой'],
+        ['case-iam-4.png', 'Сетка ленты: группы обложек и правило чередования']
+      ],
+      mediaLead: 'RAW · система бренда',
+      nav: {
+        prev: { id: 'examus', name: 'Экзамус' },
+        next: { id: 'mediacontext', name: 'Медиаконтекст' }
+      },
+      media: [
+        { type: 'image', src: 'case-iam-1.png', cap: 'Обложка проекта: I AM Agency Brand Design', full: true },
+        { type: 'duo', items: [
+          { type: 'image', src: 'case-iam-5.png', cap: 'Типографика: Coolvetica + Inter' },
+          { type: 'image', src: 'case-iam-6.png', cap: 'Основные цвета и градиенты' }
+        ] },
+        { type: 'image', src: 'cover-iam.png', cap: 'Заглавный слайд презентации', full: true }
+      ]
     }
   };
 
@@ -1182,6 +1340,113 @@
     var elAbout = document.getElementById('case-about');
     var elOutcome = document.getElementById('case-outcome');
     var elGallery = document.getElementById('case-gallery');
+    var elRaw = document.getElementById('case-raw');
+    var rawObserver = null;
+    var rawScroller = null;
+    var rawScrollHandler = null;
+
+    function buildRawFigure(m) {
+      var fig = document.createElement('figure');
+      fig.className = 'raw-item';
+      var wrap = document.createElement('div');
+      wrap.className = 'raw-media';
+      var media;
+      if (m.type === 'video') {
+        media = document.createElement('video');
+        media.src = R(m.src);
+        media.muted = true;
+        media.loop = true;
+        media.autoplay = true;
+        media.playsInline = true;
+        media.setAttribute('muted', '');
+        media.setAttribute('playsinline', '');
+        if (m.poster) media.poster = R(m.poster);
+        var pp = media.play();
+        if (pp && pp.catch) pp.catch(function () {});
+      } else {
+        media = document.createElement('img');
+        media.src = R(m.src);
+        media.loading = 'lazy';
+      }
+      media.alt = m.cap || '';
+      wrap.appendChild(media);
+      fig.appendChild(wrap);
+      if (m.cap) {
+        var c = document.createElement('figcaption');
+        c.className = 'raw-cap';
+        c.textContent = m.cap;
+        fig.appendChild(c);
+      }
+      return fig;
+    }
+
+    function renderRaw(d) {
+      if (!elRaw) return;
+      if (rawScrollHandler && rawScroller) { rawScroller.removeEventListener('scroll', rawScrollHandler); rawScrollHandler = null; }
+      elRaw.innerHTML = '';
+      if (!d.media || !d.media.length) { elRaw.style.display = 'none'; return; }
+      elRaw.style.display = '';
+      if (d.mediaLead) {
+        var lead = document.createElement('div');
+        lead.className = 'raw-lead raw-reveal raw-pending';
+        lead.textContent = d.mediaLead;
+        elRaw.appendChild(lead);
+      }
+      d.media.forEach(function (m) {
+        if (m.type === 'duo') {
+          var duo = document.createElement('div');
+          duo.className = 'raw-duo raw-reveal raw-pending';
+          (m.items || []).forEach(function (it) { duo.appendChild(buildRawFigure(it)); });
+          elRaw.appendChild(duo);
+        } else {
+          var fig = buildRawFigure(m);
+          fig.classList.add('raw-reveal', 'raw-pending');
+          elRaw.appendChild(fig);
+        }
+      });
+      // RAW-style prev / next project footer
+      if (d.nav) {
+        var nav = document.createElement('div');
+        nav.className = 'raw-nav raw-reveal raw-pending';
+        var prevHtml = d.nav.prev
+          ? '<a data-case="' + d.nav.prev.id + '"><span class="raw-nav-eyebrow">\u2190 \u041f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0438\u0439 \u043f\u0440\u043e\u0435\u043a\u0442</span><span class="raw-nav-name">' + d.nav.prev.name + '</span></a>'
+          : '<span></span>';
+        var nextHtml = d.nav.next
+          ? '<a class="raw-nav-next" data-case="' + d.nav.next.id + '"><span class="raw-nav-eyebrow">\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u043f\u0440\u043e\u0435\u043a\u0442 \u2192</span><span class="raw-nav-name">' + d.nav.next.name + '</span></a>'
+          : '<span></span>';
+        nav.innerHTML = prevHtml + nextHtml;
+        elRaw.appendChild(nav);
+      }
+
+      // Reveal on scroll into view; default state is visible, so even if the
+      // transition clock is throttled the hard-reveal safety net below guarantees
+      // nothing stays hidden.
+      var reveals = elRaw.querySelectorAll('.raw-reveal');
+      var check = function () {
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        reveals.forEach(function (e) {
+          if (!e.classList.contains('raw-pending')) return;
+          var r = e.getBoundingClientRect();
+          if (r.top < vh * 0.95 && r.bottom > -40) e.classList.remove('raw-pending');
+        });
+      };
+      var scroller = modal.querySelector('.case-scroll');
+      if (rawScrollHandler && rawScroller) rawScroller.removeEventListener('scroll', rawScrollHandler);
+      rawScroller = scroller;
+      rawScrollHandler = check;
+      if (scroller) scroller.addEventListener('scroll', check, { passive: true });
+      setTimeout(check, 120);
+      setTimeout(check, 700);
+      // Safety net: never leave RAW media hidden, even if scroll/transition never fire.
+      setTimeout(function () {
+        reveals.forEach(function (e) {
+          e.classList.remove('raw-pending');
+          e.style.transition = 'none';
+          e.style.opacity = '1';
+          e.style.transform = 'none';
+        });
+      }, 1600);
+    }
 
     function fillParagraphs(container, arr) {
       container.innerHTML = '';
@@ -1212,6 +1477,7 @@
         elGallery.appendChild(im);
       });
       modal.querySelector('.case-panel').setAttribute('aria-label', 'Кейс ' + d.title);
+      renderRaw(d);
       return true;
     }
 
